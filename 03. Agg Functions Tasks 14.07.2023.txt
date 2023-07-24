@@ -1,0 +1,25 @@
+--Agg Functions Tasks
+
+select * from SNOWFLAKE_SAMPLE_DATA.TPCH_SF1.ORDERS limit 10;
+
+--write a query to display the total_amount and max price for order priority wise
+A. SELECT O_ORDERPRIORITY Order_Priority, SUM(O_TOTALPRICE) Total_Amount, MAX(O_TOTALPRICE) Max_Price FROM SNOWFLAKE_SAMPLE_DATA.TPCH_SF1.ORDERS GROUP BY O_ORDERPRIORITY ORDER BY O_ORDERPRIORITY limit 10;
+
+--write a query to display the total_amount and max price for each year wise(orderdate)
+A. SELECT SUM(O_TOTALPRICE) Total_Amount, MAX(O_TOTALPRICE) Max_Price, YEAR(O_ORDERDATE) Year_Date  FROM SNOWFLAKE_SAMPLE_DATA.TPCH_SF1.ORDERS GROUP BY YEAR(O_ORDERDATE) ORDER BY YEAR(O_ORDERDATE) limit 10;
+
+--write a query to display the number of orders order status and ship staus wise
+A. SELECT COUNT(*) No_Of_Orders, O_ORDERSTATUS Order_Status, O_SHIPPRIORITY Ship_Priority FROM SNOWFLAKE_SAMPLE_DATA.TPCH_SF1.ORDERS GROUP BY O_ORDERSTATUS, O_SHIPPRIORITY LIMIT 10;
+
+--write a query to display the number of orders and total_amount each month wise and year should be 1992
+A. SELECT COUNT(*) No_Of_Orders, SUM(O_TOTALPRICE) Total_Amount, MONTH(O_ORDERDATE) MONTHLY, YEAR(O_ORDERDATE) YEARLY FROM SNOWFLAKE_SAMPLE_DATA.TPCH_SF1.ORDERS WHERE YEAR(O_ORDERDATE) = 1992 GROUP BY MONTH(O_ORDERDATE), YEAR(O_ORDERDATE);
+
+--write a query to display the avg order_amount  order priority wise
+A. SELECT AVG(O_TOTALPRICE) Avg_Order_Amount, O_ORDERPRIORITY Order_Priority FROM SNOWFLAKE_SAMPLE_DATA.TPCH_SF1.ORDERS GROUP BY O_ORDERPRIORITY ORDER BY O_ORDERPRIORITY;
+
+--write a query to display the total_amount and max price for each year and orderstatus wise(orderdate) 
+A. SELECT SUM(O_TOTALPRICE) Total_Amount, MAX(O_TOTALPRICE) Max_Price, YEAR(O_ORDERDATE) YEARLY, O_ORDERSTATUS Order_Status FROM SNOWFLAKE_SAMPLE_DATA.TPCH_SF1.ORDERS GROUP BY YEAR(O_ORDERDATE), O_ORDERSTATUS;
+
+select * from SNOWFLAKE_SAMPLE_DATA.TPCH_SF1.customer;
+--write a query to display the no of customers  c_mktsegment wise
+A. SELECT COUNT(*), C_MKTSEGMENT FROM SNOWFLAKE_SAMPLE_DATA.TPCH_SF1.CUSTOMER GROUP BY C_MKTSEGMENT;
